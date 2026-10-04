@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Today's News</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body{
+            background: linear-gradient(135deg,#4879eb,#650077);
+            min-height:100vh;
+            padding:30px;
+        }
+
+        .container{
+            width:90%;
+            margin:auto;
+        }
+
+        .title{
+            text-align:center;
+            color:white;
+            font-size:40px;
+            margin-bottom:30px;
+        }
+
+        .news-card{
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius:20px;
+            padding:25px;
+            margin-bottom:25px;
+            color:white;
+            box-shadow:0 8px 20px rgba(0,0,0,0.3);
+            transition:0.3s;
+        }
+
+        .news-card:hover{
+            transform:translateY(-5px);
+        }
+
+        .news-card h3{
+            color:#021021;
+            margin-bottom:15px;
+        }
+
+        .news-card p{
+            line-height:1.6;
+            margin-bottom:20px;
+        }
+
+        .btn{
+            display:inline-block;
+            text-decoration:none;
+            background:#081e4d;
+            color:white;
+            padding:12px 20px;
+            border-radius:10px;
+            transition:0.3s;
+        }
+
+        .btn:hover{
+            background:#1d4ed8;
+        }
+
+        .no-news{
+            color:white;
+            text-align:center;
+            font-size:20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1 class="title">📰 Today's News</h1>
+
+    {% for news in news_list %}
+        <div class="news-card">
+            <h3>{{ news.title }}</h3>
+
+            <p>{{ news.summary|safe }}</p>
+
+            <a href="{{ news.link }}" target="_blank" class="btn">
+                Read More →
+            </a>
+        </div>
+
+    {% empty %}
+        <p class="no-news">No news available today.</p>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

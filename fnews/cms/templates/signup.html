@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fake News Detector - Sign Up</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#326bd4,#de06b2);
+}
+.container01 {
+     text-align:center;
+     margin-bottom:20px;
+     color:white;
+     padding: 30px;
+}
+
+.container{
+    width: 800px;
+    background:rgba(255, 255, 255, 0.922);
+    padding:60px;
+    border-radius:12px;
+    color:rgb(190, 24, 24);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:20px;
+    color:#00d4ff;
+}
+
+.input-box{
+    margin-bottom:15px;
+     border-radius:8px;
+   
+}
+
+.input-box input{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:6px;
+    outline:none;
+    border-radius:8px;
+     border: 2px solid rgba(0, 0, 0, 0.489);
+}
+
+.hint{
+    font-size:12px;
+    color:#d3d3d3;
+    margin-top:4px;
+}
+
+.btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:6px;
+    background:#00d4ff;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#0099cc;
+}
+
+.login-link{
+    text-align:center;
+    margin-top:15px;
+}
+
+.login-link a{
+    color:#00d4ff;
+    text-decoration:none;
+}
+</style>
+</head>
+<body> 
+    <div class="container01">
+
+    <h1>welcome to AI-Powered Fake News Detection</h1>
+<div class="container">
+    <h2>Create Account</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="input-box">
+            <input type="text" name="username" placeholder="Enter Username" required>
+            <p class="hint">Username must be unique.</p>
+        </div>
+
+        <div class="input-box">
+            <input type="email" name="email" placeholder="Enter Email" required>
+        </div>
+
+        <div class="input-box">
+            <input type="password" name="password" placeholder="Create Password" required>
+            <p class="hint">
+                Password must contain:
+                <br>• Minimum 8 characters
+                <br>• One uppercase letter
+                <br>• One number
+                <br>• One special character (@, #, $, %, &, *)
+            </p>
+        </div>
+
+        <div class="input-box">
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+        </div>
+
+        <button type="submit" class="btn">Sign Up</button>
+
+        <div class="login-link">
+            Already have an account?
+            <a href="{% url 'login' %}">Login</a>
+        </div>
+    </form>
+    {% if success %}
+<p style="color:green;">{{ success }}</p>
+{% endif %}
+
+{% if error %}
+<p style="color:red;">{{ error }}</p>
+{% endif %}
+
+</div>
+
+</body>
+</html>
